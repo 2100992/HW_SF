@@ -7,3 +7,4 @@ frontend/package-lock.json
 my_db.sqlite
 sse_server.conf
 *.pyc
+*.conf
