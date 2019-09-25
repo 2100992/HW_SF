@@ -19,7 +19,7 @@ def create_app():
     return app
 
 app = create_app()
-url = 'http://94.103.94.54:' + app.config.port
+url = 'http://94.103.94.54:' + str(app.config.port)
 urlSF = 'https://sf-pyw.mosyag.in'
 
 #приветственная страница
@@ -31,15 +31,15 @@ def index():
 
 #страница с голосованием на этом сервере
 #в шаблон передаем url нашего сервера
-@app.route('/vouting')
-@view('vouting.tpl')
+@app.route('/voting')
+@view('voting.tpl')
 def vouting():
     return {'url': url}
 
 #страница с голосованием на этом сервере
 #в шаблон передаем url сервера SF
-@app.route('/sfvouting')
-@view('vouting.tpl')
+@app.route('/sfvoting')
+@view('voting.tpl')
 def sfvouting():
     return {'url': urlSF}
 

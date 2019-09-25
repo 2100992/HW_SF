@@ -1,8 +1,38 @@
-button{
+/* button{
     padding: 20px;
     background: linear-gradient(0deg, rgb(250, 128, 128), rgb(135, 255, 135));
     border: 1px solid blue;
     border-radius: 10%;
     font-family: 'VT323';
     font-size: 3rem;
-  }
+  } */
+
+
+.wrapper {
+  display: grid;
+  /* height: 100vh; */
+  grid-template-columns: 50% 50%;
+  grid-template-areas: 
+      "sf-header my-header"
+      "sf-results my-results";
+}
+
+.sf-results{
+  grid-area: sf-results;
+  padding: 10px;
+}
+
+.my-results{
+  grid-area: my-results;
+  padding: 10px;
+}
+
+.sf-header{
+  grid-area: sf-header;
+  padding: 10px;
+}
+
+.my-header{
+  grid-area: my-header;
+  padding: 10px;
+}

@@ -1,16 +1,13 @@
 % include('header.html', title='Page Title')
 <body>
+% include('navbar.html')
 <main>
     <div class='container'>
-        % include('navbar.html')
-        <div class="jumbotron">
-            <h1 class="display-4">Голосовалка</h1>
-            <p class="lead">Сбор голосов на нашем сервере и на сервере SF</p>
-            <hr class="my-4">
-            <p>TODO добавить кропки перехода</p>
-            <ul class="list-group">
-            </ul>
-        </div>
+        <h1>Голосовалка</h1>
+        <p>Выберите где вы хотите проголосовать</p>
+        <hr class="my-4">
+        <a href="/sfvoting" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Сервер SkillFactory</a>
+        <a href="/voting" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Этот сервер</a>
     </div>
 </main>
 % include('footer.html')
