@@ -9,9 +9,9 @@
         <hr class="my-4">
         <div class = "container">
             <div class="voting">
-                <button id="cats">Cats</button>
-                <button id="dogs">Dogs</button>
-                <button id="perrots">Perrots</button>
+                <button class="btn btn-secondary voting-btn" id="cats">Cats</button>
+                <button class="btn btn-secondary voting-btn" id="dogs">Dogs</button>
+                <button class="btn btn-secondary voting-btn" id="perrots">Perrots</button>
             </div>
         </div>
     </div>
