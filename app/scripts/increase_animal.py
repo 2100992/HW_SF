@@ -1,3 +1,6 @@
+import sys
+sys.path.append('.')
+
 import sqlalchemy as sa
 from app.db import vote_results
 
@@ -20,6 +23,4 @@ def main():
         increase_animal("sqlite:///my_db.sqlite", animal)
 
 if __name__ == "__main__":
-    import sys
-    sys.path.append('.')
     main()

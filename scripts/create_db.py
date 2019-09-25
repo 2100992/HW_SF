@@ -1,9 +1,11 @@
+import sys
+sys.path.append('.')
+
 from app.db import metadata, vote_results
 import sqlalchemy as sa
 
-
-if __name__ == '__main__':
-    engine = sa.create_engine('sqlite:///my_db.sqlite')
+def creade_db(engine):
+    engine = sa.create_engine(engine)
     metadata.create_all(engine)
 
     with engine.begin() as connection:
@@ -14,3 +16,9 @@ if __name__ == '__main__':
                 votes = 0
             )
             connection.execute(statement)
+
+def main():
+    creade_db('sqlite:///my_db.sqlite')
+
+if __name__ == "__main__":
+    main()
