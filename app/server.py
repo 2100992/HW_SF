@@ -1,5 +1,7 @@
 import time
 import bottle
+from bottle import redirect
+from app.scripts.increase_animal import increase_animal
 
 def create_app():
     app = bottle.Bottle()
@@ -7,6 +9,7 @@ def create_app():
     app.config.setdefault('server', 'gunicorn')
     app.config.setdefault('host', '0.0.0.0')
     app.config.setdefault('port', 8000)
+    app.config.setdefault('database_path', 'sqlite:///my_db.sqlite')
     return app
 
 app = create_app()
@@ -28,15 +31,18 @@ def stats():
 
 @app.post('/sse/vote/cats')
 def increase_cats():
-    pass
+    increase_animal(app.config.database_path, 'cats')
+    #return redirect('/stats')
 
 @app.post('/sse/vote/dogs')
 def increase_dogs():
-    pass
+    increase_animal(app.config.database_path, 'dogs')
+    #return redirect('/stats')
 
 @app.post('/sse/vote/parrots')
 def increase_parrots():
-    pass
+    increase_animal(app.config.database_path, 'parrots')
+    #return redirect('/stats')
 
 @app.route('/words')
 def word_spammer():

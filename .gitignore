@@ -4,3 +4,6 @@ frontend/package.json
 frontend/package-lock.json
 .vscode/*
 *.sqlite
+my_db.sqlite
+sse_server.conf
+*.pyc

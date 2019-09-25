@@ -1,3 +1,6 @@
+import sys
+sys.path.append('.')
+
 import sqlalchemy as sa
 from app.db import vote_results
 
@@ -15,6 +18,4 @@ def main():
     print(list_result("sqlite:///my_db.sqlite"))
 
 if __name__ == "__main__":
-    import sys
-    sys.path.append('.')
     main()
