@@ -3,24 +3,24 @@ const header = new Headers({
     'Access-Control-Allow-Origin': '*'
 })
 
-const MyURL = new URL(MyServerURL)
-const SFURL = new URL(SFServerURL)
+const MyURL = new URL(MyServerURL+'/sse/vote/stats')
+const SFURL = new URL(SFServerURL+'/sse/vote/stats')
 
 
-const SFES = new EventSource(SFURL, header);
+// const SFES = new EventSource(SFURL, header);
 const MyES = new EventSource(MyURL, header);
 
-SFES.onopen = event => {
-    console.log(event)
-}
+// SFES.onopen = event => {
+//     console.log(event)
+// }
 
-SFES.onerror = error => {
-    SFES.readyState ? console.error("⛔ EventSource failed: ", error) : null;
-};
+// SFES.onerror = error => {
+//     SFES.readyState ? console.error("⛔ EventSource failed: ", error) : null;
+// };
 
-SFES.onmessage = message => {
-    console.log(message.data)
-}
+// SFES.onmessage = message => {
+//     console.log(message.data)
+// }
 
 
 MyES.onopen = event => {

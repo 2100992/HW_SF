@@ -50,7 +50,7 @@ def results():
     return {'urlSF': urlSF, 'url': url}
 
 #SSE-стрим с текущими результатами голосования нашего сервера
-@app.route('/stats')
+@app.route('/sse/vote/stats')
 def stats():
     bottle.response.content_type = "text/event-stream"
     bottle.response.cache_control = "no-cache"
