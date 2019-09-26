@@ -90,6 +90,12 @@ def word_spammer():
         yield 'data: %s\n\n' % word
         time.sleep(2)
 
+#тестовая страница
+@app.route('/randoms')
+@view('randoms.tpl')
+def mosyagin_randoms():
+    pass
+
 
 if __name__ == "__main__":
     bottle.run(
