@@ -28,6 +28,14 @@ def create_app():
     return app
 
 app = create_app()
+print(f'server = {app.config.server}')
+print(f'host = {app.config.server}')
+print(f'port = {app.config.port}')
+print(f'SSEHost = {app.config.SSEHost}')
+print(f'SSEPort = {app.config.SSEPort}')
+print(f'database_path = {app.config.database_path}')
+
+
 url = str(app.config.SSEHost) + ":" + str(app.config.SSEPort)
 urlSF = 'https://sf-pyw.mosyag.in'
 
@@ -56,8 +64,6 @@ def sfvouting():
 @app.route('/results')
 @view('results.tpl')
 def results():
-    print(f'SF SSE URL = {urlSF}')
-    print(f'My SSE URL = {url}')
     return {'urlSF': urlSF, 'url': url}
 
 #SSE-стрим с текущими результатами голосования нашего сервера
