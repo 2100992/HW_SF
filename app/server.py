@@ -1,5 +1,5 @@
-import time
-from time import time
+# import time
+from time import time, sleep
 
 import bottle
 from bottle import redirect
@@ -12,15 +12,23 @@ from scripts.list_results import list_result
 
 def create_app():
     app = bottle.Bottle()
+    #пытаемся загрузить конфигурацию из этого файла
     app.config.load_config('sse_server.conf')
+    #в случае отсутствия файла с конфигурацией
+    #http сервер по умолчанию gunicorn/nginx/auto/
     app.config.setdefault('server', 'auto')
+    #host - ip адрес с которого слушаем запросы (0.0.0.0 - со всех адресов)
     app.config.setdefault('host', 'localhost')
     app.config.setdefault('port', 8000)
+    #SSEHost, SSEPort - адрес и порт на котором запущен наш SSE сервер
+    app.config.setdefault('SSEHost', 'localhost')
+    app.config.setdefault('SSEPort', 8000)
+    #путь к базе данных
     app.config.setdefault('database_path', 'sqlite:///my_db.sqlite')
     return app
 
 app = create_app()
-url = 'http://94.103.94.54:' + str(app.config.port)
+url = str(app.config.SSEHost) + ":" + str(app.config.SSEPort)
 urlSF = 'https://sf-pyw.mosyag.in'
 
 #приветственная страница
@@ -54,11 +62,11 @@ def results():
 @app.route('/sse/vote/stats')
 def stats():
     now = time()
+    bottle.response.content_type = "text/event-stream"
+    bottle.response.cache_control = "no-cache"
+    bottle.response.headers['Access-Control-Allow-Origin'] = '*'
     while True:
         if time() - now > 1:
-            bottle.response.content_type = "text/event-stream"
-            bottle.response.cache_control = "no-cache"
-            bottle.response.headers['Access-Control-Allow-Origin'] = '*'
             yield f'data: {list_result(app.config.database_path)}'
             now = time()
 
@@ -94,7 +102,7 @@ def word_spammer():
     words = ['one', 'two', 'three', 'four', 'five', 'six', 'seven']
     for word in words:
         yield 'data: %s\n\n' % word
-        time.sleep(2)
+        sleep(1)
 
 #тестовая страница
 @app.route('/randoms')
