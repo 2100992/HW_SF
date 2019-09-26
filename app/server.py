@@ -69,14 +69,22 @@ def results():
 #SSE-стрим с текущими результатами голосования нашего сервера
 @app.route('/sse/vote/stats')
 def stats():
-    now = time()
+    #now = time()
     bottle.response.content_type = "text/event-stream"
     bottle.response.cache_control = "no-cache"
     bottle.response.headers['Access-Control-Allow-Origin'] = '*'
+    # result = f'data: {list_result(app.config.database_path)}'
+    # print(result)
+    # return result
+
     while True:
-        if time() - now > 1:
-            yield f'data: {list_result(app.config.database_path)}'
-            now = time()
+        # if time() - now > 1:
+        #     yield f'data: {list_result(app.config.database_path)}'
+        #     now = time()
+        result = f'data: {list_result(app.config.database_path)}'
+        print(result)
+        yield result
+        sleep(1)
 
 
 #принимающими POST-запросы с пустым телом
