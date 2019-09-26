@@ -1,4 +1,5 @@
 import time
+from time import time
 
 import bottle
 from bottle import redirect
@@ -52,10 +53,15 @@ def results():
 #SSE-стрим с текущими результатами голосования нашего сервера
 @app.route('/sse/vote/stats')
 def stats():
-    bottle.response.content_type = "text/event-stream"
-    bottle.response.cache_control = "no-cache"
-    bottle.response.headers['Access-Control-Allow-Origin'] = '*'
-    return f'data: {list_result(app.config.database_path)}'
+    now = time()
+    while True:
+        if time() - now > 1:
+            bottle.response.content_type = "text/event-stream"
+            bottle.response.cache_control = "no-cache"
+            bottle.response.headers['Access-Control-Allow-Origin'] = '*'
+            yield f'data: {list_result(app.config.database_path)}'
+            now = time()
+
 
 #принимающими POST-запросы с пустым телом
 @app.post('/sse/vote/cats')
