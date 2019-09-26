@@ -56,6 +56,8 @@ def sfvouting():
 @app.route('/results')
 @view('results.tpl')
 def results():
+    print(f'SF SSE URL = {urlSF}')
+    print(f'My SSE URL = {url}')
     return {'urlSF': urlSF, 'url': url}
 
 #SSE-стрим с текущими результатами голосования нашего сервера
