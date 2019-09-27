@@ -1,15 +1,14 @@
 # import time
 from time import time, sleep
+from configparser import ConfigParser
 
 import bottle
 from bottle import redirect
 from bottle import view
 from bottle import static_file
-from bottle import post
 
 from scripts.increase_animal import increase_animal
 from scripts.list_results import list_result
-
 
 def create_app():
     app = bottle.Bottle()
@@ -22,13 +21,22 @@ def create_app():
     app.config.setdefault('host', 'localhost')
     app.config.setdefault('port', 8000)
     #SSEHost, SSEPort - адрес и порт на котором запущен наш SSE сервер
-    app.config.setdefault('SSEHost', 'localhost')
-    app.config.setdefault('SSEPort', 8000)
+    #app.config.setdefault('SSEHost', 'localhost')
+    #app.config.setdefault('SSEPort', 8000)
     #путь к базе данных
     app.config.setdefault('database_path', 'sqlite:///my_db.sqlite')
     return app
 
 app = create_app()
+
+config = ConfigParser()
+try:
+    config.read('sse_server.conf')
+    app.config.SSEHost = config['bottle']['ssehost']
+    app.config.SSEPort = config['bottle']['sseport']
+except Exception as err:
+    print(err)
+
 print(f'server = {app.config.server}')
 print(f'host = {app.config.server}')
 print(f'port = {app.config.port}')
