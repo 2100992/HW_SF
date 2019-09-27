@@ -90,19 +90,19 @@ def stats():
 
 
 #принимающими POST-запросы с пустым телом
-@post('/sse/vote/cats')
+@app.post('/sse/vote/cats')
 def increase_cats():
     print('increase_cats')
     increase_animal(app.config.database_path, 'cats')
     #return redirect('/stats')
 
-@post('/sse/vote/dogs')
+@app.post('/sse/vote/dogs')
 def increase_dogs():
     print('increase_dogs')
     increase_animal(app.config.database_path, 'dogs')
     #return redirect('/stats')
 
-@post('/sse/vote/parrots')
+@app.post('/sse/vote/parrots')
 def increase_parrots():
     print('increase_parrots')
     increase_animal(app.config.database_path, 'parrots')

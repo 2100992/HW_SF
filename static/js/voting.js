@@ -14,7 +14,7 @@ function postVote(url, animal){
     // console.log(ajax)
     ajax.send(null);
     //console.log('send')
-    
+    console.log(`POST sended to ${fullURL}`)
 }
 
 const buttonDogs = $('#dogs')
