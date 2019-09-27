@@ -49,7 +49,7 @@ url = str(app.config.SSEHost) + ":" + str(app.config.SSEPort)
 urlSF = 'https://sf-pyw.mosyag.in'
 
 #приветственная страница
-#в навбаре выбор голосовалки (этот сервер или сервер sf)
+#выбор голосовалки (этот сервер или сервер sf)
 @app.route('/')
 @view('index.tpl')
 def index():
@@ -79,17 +79,26 @@ def results():
 #SSE-стрим с текущими результатами голосования нашего сервера
 @app.route('/sse/vote/stats')
 def stats():
-    # now = time()
     bottle.response.content_type = "text/event-stream"
     bottle.response.cache_control = "no-cache"
     bottle.response.headers['Access-Control-Allow-Origin'] = '*'
-    result = f'data: {list_result(app.config.database_path)}'
-    print(result)
-    return result
+    #result = f'data: {list_result(app.config.database_path)}\n\n'
+    #print(result)
+    #return result
 
-    # while True:
-    #     if time() - now > 1:
-    #         yield f'data: {list_result(app.config.database_path)}'
+    # Set client-side auto-reconnect timeout, ms.
+    yield 'retry: 100\n\n'
+    
+    # Keep connection alive no more then... (s)
+    end = time() + 60
+    while time() < end:
+        yield 'data: %i\n\n' % list_result(app.config.database_path)
+        sleep(1)
+
+
+#    now = time()
+#    while time() - now > 1:
+#         yield f'data: {list_result(app.config.database_path)}'
     #         now = time()
         # result = f'data: {list_result(app.config.database_path)}'
         #print(result)
