@@ -5,6 +5,7 @@ import bottle
 from bottle import redirect
 from bottle import view
 from bottle import static_file
+from bottle import post
 
 from scripts.increase_animal import increase_animal
 from scripts.list_results import list_result
@@ -44,6 +45,7 @@ urlSF = 'https://sf-pyw.mosyag.in'
 @app.route('/')
 @view('index.tpl')
 def index():
+    print('/')
     pass
 
 #страница с голосованием на этом сервере
@@ -88,18 +90,21 @@ def stats():
 
 
 #принимающими POST-запросы с пустым телом
-@app.post('/sse/vote/cats')
+@post('/sse/vote/cats')
 def increase_cats():
+    print('increase_cats')
     increase_animal(app.config.database_path, 'cats')
     #return redirect('/stats')
 
-@app.post('/sse/vote/dogs')
+@post('/sse/vote/dogs')
 def increase_dogs():
+    print('increase_dogs')
     increase_animal(app.config.database_path, 'dogs')
     #return redirect('/stats')
 
-@app.post('/sse/vote/parrots')
+@post('/sse/vote/parrots')
 def increase_parrots():
+    print('increase_parrots')
     increase_animal(app.config.database_path, 'parrots')
     #return redirect('/stats')
 

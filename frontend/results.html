@@ -1,0 +1,50 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Голосовалка</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="static/css/styles.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="/">C.2</a>
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+            <a class="nav-link" href="/sfvoting">Голосовалка на сервере SF</a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="/voting">Голосовалка на этом сервере</a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="/results">Результаты</a>
+        </li>
+    </ul>
+</nav>
+<main>
+    <div class='container'>
+        <h1>Результаты голосования</h1>
+        <hr class="my-4">
+
+        <div class="wrapper">
+            <div class="sf-header"><h3>Результаты на сервере SkillFactory</h3></div>
+            <div class="sf-results">
+                <p>Собаки</p>
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" id="SFDogs">0</div>
+                </div>
+                <p>Кошки</p>
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" id="SFCats">0</div>
+                </div>
+                <p>Попугаи</p>
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" id="SFParrots">0</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<script src="js/results.js"></script>
+</body>

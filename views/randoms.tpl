@@ -1,6 +1,8 @@
 % include('header.html', title='Page Title')
 <body>
+<div class='container'>
 % include('navbar.html')
+</div>
 <main>
     <div class='container'>
         <section class="mt-5 d-flex justify-content-center">

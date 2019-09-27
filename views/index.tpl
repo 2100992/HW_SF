@@ -1,6 +1,8 @@
 % include('header.html', title='Page Title')
 <body>
+<div class='container'>
 % include('navbar.html')
+</div>
 <main>
     <div class='container'>
         <h1>Голосовалка</h1>
