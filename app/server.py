@@ -21,8 +21,8 @@ def create_app():
     app.config.setdefault('host', 'localhost')
     app.config.setdefault('port', 8000)
     #SSEHost, SSEPort - адрес и порт на котором запущен наш SSE сервер
-    #app.config.setdefault('SSEHost', 'localhost')
-    #app.config.setdefault('SSEPort', 8000)
+    app.config.setdefault('SSEHost', 'http://localhost')
+    app.config.setdefault('SSEPort', 8000)
     #путь к базе данных
     app.config.setdefault('database_path', 'sqlite:///my_db.sqlite')
     return app
