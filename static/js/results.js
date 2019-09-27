@@ -57,6 +57,7 @@ MyES.onerror = error => {
 };
 
 MyES.onmessage = message => {
+    console.log(message)
     let result = JSON.parse(message.data)
     console.log(result)
     let dogs = result.dogs
