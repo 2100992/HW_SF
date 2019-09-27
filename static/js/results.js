@@ -20,6 +20,10 @@ SFES.onerror = error => {
 };
 
 SFES.onmessage = message => {
+    console.log(message)
+    console.log(`SF typeof(message) = ${typeof(message)}`)
+    console.log(message.data)
+    console.log(`SF typeof(message.data) = ${typeof(message.data)}`)
     let result = JSON.parse(message.data)
     let dogs = result.dogs
     let cats = result.cats
@@ -58,6 +62,9 @@ MyES.onerror = error => {
 
 MyES.onmessage = message => {
     console.log(message)
+    console.log(`typeof(message) = ${typeof(message)}`)
+    console.log(message.data)
+    console.log(`typeof(message.data) = ${typeof(message.data)}`)
     let result = JSON.parse(message.data)
     console.log(result)
     let dogs = result.dogs

@@ -89,21 +89,17 @@ def stats():
     # Set client-side auto-reconnect timeout, ms.
     yield 'retry: 100\n\n'
     
-    # Keep connection alive no more then... (s)
-    end = time() + 60
-    while time() < end:
-        yield 'data: %s\n\n' % list_result(app.config.database_path)
-        sleep(1)
+    # # Keep connection alive no more then... (s)
+    # end = time() + 600
+    # while time() < end:
+    #     yield 'data: %s\n\n' % list_result(app.config.database_path)
+    #     sleep(1)
 
-
-#    now = time()
-#    while time() - now > 1:
-#         yield f'data: {list_result(app.config.database_path)}'
-    #         now = time()
-        # result = f'data: {list_result(app.config.database_path)}'
-        #print(result)
-        # yield result
-        #sleep(1)
+    now = time()
+    while True:
+        if time() - now > 1:
+            yield 'data: %s\n\n' % list_result(app.config.database_path)
+            now = time()
 
 
 #принимающими POST-запросы с пустым телом
@@ -111,22 +107,19 @@ def stats():
 def increase_cats():
     print('increase_cats')
     increase_animal(app.config.database_path, 'cats')
-    stats()
-    #return redirect('/stats')
+
 
 @app.post('/sse/vote/dogs')
 def increase_dogs():
     print('increase_dogs')
     increase_animal(app.config.database_path, 'dogs')
-    stats()
-    #return redirect('/stats')
+
 
 @app.post('/sse/vote/parrots')
 def increase_parrots():
     print('increase_parrots')
     increase_animal(app.config.database_path, 'parrots')
-    stats()
-    #return redirect('/stats')
+
 
 #объект необходим для работы со статикой (CSS, JS)
 @app.route("/static/<filename:path>")
