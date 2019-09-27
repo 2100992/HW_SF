@@ -29,7 +29,7 @@ SFES.onmessage = message => {
     let ratioDogs = dogs / allAnimals * 100
     let ratioParrots = parrots / allAnimals * 100
 
-    console.log(`dogs = ${dogs}, ratioDogs = ${ratioDogs}`)
+    // console.log(`dogs = ${dogs}, ratioDogs = ${ratioDogs}`)
 
     SFDogs.style.cssText = `width: ${ratioDogs}%;`
     SFDogs.textContent = `${dogs}`
@@ -41,24 +41,43 @@ SFES.onmessage = message => {
     SFParrots.textContent = `${parrots}`
 }
 
-// const MyDogs = document.querySelector('#MyDogs')
-// const MyCats = document.querySelector('#MyCats')
-// const MyParrots = document.querySelector('#MyParrots')
+const MyDogs = document.querySelector('#MyDogs')
+const MyCats = document.querySelector('#MyCats')
+const MyParrots = document.querySelector('#MyParrots')
 
-// const MyURL = new URL(MyServerURL+'/sse/vote/stats')
-// const MyES = new EventSource(MyURL, header);
+const MyURL = new URL(MyServerURL+'/sse/vote/stats')
+const MyES = new EventSource(MyURL, header);
 
-// MyES.onopen = event => {
-//     console.log(event)
-//   }
+MyES.onopen = event => {
+    // console.log(event)
+  }
   
-// MyES.onerror = error => {
-//     MyES.readyState ? console.error("⛔ EventSource failed: ", error) : null;
-// };
+MyES.onerror = error => {
+    MyES.readyState ? console.error("⛔ EventSource failed: ", error) : null;
+};
 
-// MyES.onmessage = message => {
-//     console.log(message.data)
-// }
+MyES.onmessage = message => {
+    let result = JSON.parse(message.data)
+    console.log(result)
+    let dogs = result.dogs
+    let cats = result.cats
+    let parrots = result.parrots
+    let allAnimals = dogs + cats + parrots
+    let ratioCats = cats / allAnimals * 100
+    let ratioDogs = dogs / allAnimals * 100
+    let ratioParrots = parrots / allAnimals * 100
+
+    console.log(`dogs = ${dogs}, ratioDogs = ${ratioDogs}`)
+
+    MyDogs.style.cssText = `width: ${ratioDogs}%;`
+    MyDogs.textContent = `${dogs}`
+
+    MyCats.style.cssText = `width: ${ratioCats}%;`
+    MyCats.textContent = `${cats}`
+
+    MyParrots.style.cssText = `width: ${ratioParrots}%;`
+    MyParrots.textContent = `${parrots}`
+}
 
 
 

@@ -92,7 +92,7 @@ def stats():
         #     yield f'data: {list_result(app.config.database_path)}'
         #     now = time()
         result = f'data: {list_result(app.config.database_path)}'
-        print(result)
+        #print(result)
         yield result
         sleep(1)
 
