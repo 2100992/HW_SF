@@ -92,7 +92,7 @@ def stats():
     # Keep connection alive no more then... (s)
     end = time() + 60
     while time() < end:
-        yield 'data: %i\n\n' % list_result(app.config.database_path)
+        yield 'data: %s\n\n' % list_result(app.config.database_path)
         sleep(1)
 
 
