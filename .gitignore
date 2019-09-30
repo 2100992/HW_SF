@@ -10,3 +10,4 @@ sse_server.conf
 *.conf
 test.py
 frontend4testing/node_modules/*
+tmp/*
