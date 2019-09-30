@@ -3,7 +3,6 @@
     min-width: 80px;
   }
 
-
 .wrapper {
   display: grid;
   /* height: 100vh; */
@@ -30,5 +29,25 @@
 
 .my-header{
   grid-area: my-header;
+  padding: 10px;
+}
+
+
+
+.grid-wrapper {
+  display: grid;
+  /* height: 100vh; */
+  grid-template-columns: 20% 80%;
+  grid-template-areas: "nav main";
+  min-width: 720px;
+}
+
+.nav{
+  grid-area: nav;
+  padding: 10px;
+}
+
+.main{
+  grid-area: main;
   padding: 10px;
 }

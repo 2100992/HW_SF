@@ -14,4 +14,3 @@
 </main>
 <script src="/static/js/randoms.js"></script>
 % include('footer.html')
-</body>

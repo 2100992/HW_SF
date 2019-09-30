@@ -20,6 +20,7 @@ function postVote(url, animal){
 const buttonDogs = $('#dogs')
 const buttonCats = $('#cats')
 const buttonParrots = $('#parrots')
+const resultsLink = $('.resultsLink')
 
 buttonCats.click(() => {
     postVote(serverURL, 'cats')

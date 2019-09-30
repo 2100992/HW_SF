@@ -10,6 +10,8 @@ from bottle import static_file
 from scripts.increase_animal import increase_animal
 from scripts.list_results import list_result
 
+#Очень сомнительный кусок кода bottle.Bottle().config.load_config разбирает только часть конфига
+#SSEHost, SSEPort, database_path не читаются. Надо бы вынести чтение конфигов базы данных и SSE в отдельные функции
 def create_app():
     app = bottle.Bottle()
     #пытаемся загрузить конфигурацию из этого файла
@@ -29,11 +31,14 @@ def create_app():
 
 app = create_app()
 
+#Догружаем нераспознанные параметры в app.config
+
 config = ConfigParser()
 try:
     config.read('sse_server.conf')
-    app.config.SSEHost = config['bottle']['ssehost']
-    app.config.SSEPort = config['bottle']['sseport']
+    app.config.SSEHost = config['bottle']['SSEHost']
+    app.config.SSEPort = config['bottle']['SSEPort']
+    app.config.database_path = config['bottle']['database_path']
 except Exception as err:
     print(err)
 
@@ -49,11 +54,18 @@ url = str(app.config.SSEHost) + ":" + str(app.config.SSEPort)
 urlSF = 'https://sf-pyw.mosyag.in'
 
 #приветственная страница
-#выбор голосовалки (этот сервер или сервер sf)
 @app.route('/')
 @view('index.tpl')
 def index():
     print('/')
+    pass
+
+#приветственная страница по модулю C2
+#выбор голосовалки (этот сервер или сервер sf)
+@app.route('/C2')
+@view('C2.tpl')
+def indexC2():
+    print('/C2')
     pass
 
 #страница с голосованием на этом сервере
@@ -90,16 +102,16 @@ def stats():
     yield 'retry: 100\n\n'
     
     # # Keep connection alive no more then... (s)
-    # end = time() + 600
-    # while time() < end:
-    #     yield 'data: %s\n\n' % list_result(app.config.database_path)
-    #     sleep(1)
+    end = time() + 600
+    while time() < end:
+        yield 'data: %s\n\n' % list_result(app.config.database_path)
+        sleep(1)
 
-    now = time()
-    while True:
-        if time() - now > 1:
-            yield 'data: %s\n\n' % list_result(app.config.database_path)
-            now = time()
+    # now = time()
+    # while True:
+    #     if time() - now > 1:
+    #         yield 'data: %s\n\n' % list_result(app.config.database_path)
+    #         now = time()
 
 
 #принимающими POST-запросы с пустым телом
