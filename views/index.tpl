@@ -1,6 +1,6 @@
 % include('header.html', title='Page Title')
 <body>
-<div class='container'>
+<div class=''>
 % include('navbar.html')
 </div>
 <main>
@@ -12,4 +12,7 @@
         <a href="/voting" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Этот сервер</a> -->
     </div>
 </main>
+
 % include('footer.html')
+</body>
+</html>

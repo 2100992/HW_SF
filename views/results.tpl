@@ -4,12 +4,11 @@
     const MyServerURL = '{{ url }}'
     const SFServerURL = '{{ urlSF }}'
 </script>
-<div class='container'>
+<div class=''>
 % include('navbar.html')
 </div>
 <main>
     <div class="container grid-wrapper">
-        % include('navC2.html')
         <div class='container main'>
             <h1>Результаты голосования</h1>
             <hr class="my-4">
@@ -47,7 +46,11 @@
                 </div>
             </div>
         </div>
+        % include('navC2.html')
     </div>
 </main>
-<script src="/static/js/results.js"></script>
+
 % include('footer.html')
+<script src="/static/js/results.js"></script>
+</body>
+</html>

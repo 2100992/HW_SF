@@ -24,12 +24,15 @@ const resultsLink = $('.resultsLink')
 
 buttonCats.click(() => {
     postVote(serverURL, 'cats')
+    resultsLink.css('display', 'block')
 })
 
 buttonDogs.click(() => {
     postVote(serverURL, 'dogs')
+    resultsLink.css('display', 'block')
 })
 
 buttonParrots.click(() => {
     postVote(serverURL, 'parrots')
+    resultsLink.css('display', 'block')
 })

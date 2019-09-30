@@ -12,5 +12,8 @@
         </section>
     </div>
 </main>
-<script src="/static/js/randoms.js"></script>
+
 % include('footer.html')
+<script src="/static/js/randoms.js"></script>
+</body>
+</html>

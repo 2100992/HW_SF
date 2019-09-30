@@ -9,3 +9,4 @@ sse_server.conf
 *.pyc
 *.conf
 test.py
+frontend4testing/node_modules/*
