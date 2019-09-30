@@ -1,0 +1,4 @@
+.venv/*
+.vscode/*
+frontend4testing/node_modules/*
+sse_server.conf
