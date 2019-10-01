@@ -2,3 +2,6 @@
 .vscode/*
 frontend4testing/node_modules/*
 sse_server.conf
+*.pyc
+*.sqlite
+frontend/package.json
