@@ -1,18 +1,5 @@
 .venv/*
 .vscode/*
-<<<<<<< HEAD
-frontend/node_modules/*
-frontend/package-lock.json
-frontend/package.json
-*.sqlite
-app/__pycache__/*
-frontend4testing/node_modules/*
-scripts/__pycache__/*
-tmp/*
-app/scripts/__pycache__/*
-test.py
-sse_server.conf
-=======
 package.json
 package-lock.json
 frontend4testing/node_modules/*
@@ -22,4 +9,3 @@ frontend4testing/node_modules/*
 tmp/*
 test.py
 sse_server.conf
->>>>>>> C2HW
