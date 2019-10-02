@@ -10,6 +10,8 @@ from bottle import static_file
 from scripts.increase_animal import increase_animal
 from scripts.list_results import list_result
 
+# from app.C3 import *
+
 #Очень сомнительный кусок кода bottle.Bottle().config.load_config разбирает только часть конфига
 #SSEHost, SSEPort, database_path не читаются. Надо бы вынести чтение конфигов базы данных и SSE в отдельные функции
 def create_app():
@@ -63,7 +65,7 @@ def index():
 #приветственная страница по модулю C1
 @app.route('/C1')
 @view('C1.tpl')
-def indexC2():
+def indexC1():
     print('/C1')
     pass
 
@@ -74,6 +76,14 @@ def indexC2():
 @view('C2.tpl')
 def indexC2():
     print('/C2')
+    pass
+
+#приветственная страница по модулю C3
+#выбор программы "Ваш город" или "Галочки предпочтений"
+@app.route('/C3')
+@view('C3.tpl')
+def indexC3():
+    print('/C3')
     pass
 
 #страница с голосованием на этом сервере
