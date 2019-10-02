@@ -1,4 +1,15 @@
 .venv/*
 .vscode/*
+<<<<<<< HEAD
 frontend4testing/node_modules/*
+=======
+package.json
+package-lock.json
+frontend4testing/node_modules/*
+*.sqlite
+*.pyc
+*.conf
+tmp/*
+test.py
+>>>>>>> master
 sse_server.conf

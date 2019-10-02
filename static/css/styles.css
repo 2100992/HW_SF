@@ -1,0 +1,67 @@
+/* -------------------------------------------------------------------------- */
+/* --------------------Стили кнопок голосования------------------------------ */
+.voting-btn {
+    width: 30%;
+    min-width: 80px;
+  }
+/* -------------------------------------------------------------------------- */
+/* --------------------Стили для результатов голосования--------------------- */
+.wrapper {
+  display: grid;
+  /* height: 100vh; */
+  grid-template-columns: 50% 50%;
+  grid-template-areas: 
+      "sf-header my-header"
+      "sf-results my-results";
+}
+
+.sf-results{
+  grid-area: sf-results;
+  padding: 10px;
+}
+
+.my-results{
+  grid-area: my-results;
+  padding: 10px;
+}
+
+.sf-header{
+  grid-area: sf-header;
+  padding: 10px;
+}
+
+.my-header{
+  grid-area: my-header;
+  padding: 10px;
+}
+
+/* -------------------------------------------------------------------------- */
+/* --------------------Стили для навигационной панели слева------------------ */
+.grid-wrapper {
+  display: grid;
+  /* height: 100vh; */
+  grid-template-columns: 20% 80%;
+  grid-template-areas: "nav main";
+}
+
+.nav{
+  grid-area: nav;
+  padding: 10px;
+}
+
+.main{
+  grid-area: main;
+  padding: 10px;
+}
+
+/* -------------------------------------------------------------------------- */
+/* --------------По умолчанию скроем кнопку просмотра результатов------------ */
+.resultsLink {
+  display: none;
+}
+
+@media (max-width: 770px) {
+.grid-wrapper {
+  display: block;
+}
+}
