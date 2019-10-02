@@ -1,8 +1,5 @@
 .venv/*
 .vscode/*
-<<<<<<< HEAD
-frontend4testing/node_modules/*
-=======
 package.json
 package-lock.json
 frontend4testing/node_modules/*
@@ -11,5 +8,4 @@ frontend4testing/node_modules/*
 *.conf
 tmp/*
 test.py
->>>>>>> master
 sse_server.conf
