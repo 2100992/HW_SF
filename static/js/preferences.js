@@ -9,9 +9,25 @@ let checkBoxes = [
 ]
 
 
-function setCheckboxes(){
-    for (let i=0; i<localStorage.length)
+function getStorageItems(){
+    let iter = ''
+    let lsiter = ''
+    for (i in checkBoxes) {
+        iter = $(checkBoxes[i])
+        lsiter = localStorage.getItem(checkBoxes[i])
+        iter.prop('checked', lsiter)
+    }
 }
+
+function setStorageItems(){
+    let iter = ''
+    let lsiter = ''
+    for (i in checkBoxes) {
+        iter = $(checkBoxes[i]).prop('checked')
+        localStorage.setItem(checkBoxes[i], iter)
+    }
+}
+
 let secondCheck = $('#defaultCheck6')
 secondCheck.prop("checked")
 secondCheck.prop("checked", true)
