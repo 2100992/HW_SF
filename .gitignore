@@ -1,6 +1,13 @@
 .venv/*
 .vscode/*
+package.json
+package-lock.json
 frontend4testing/node_modules/*
+*.sqlite
+*.pyc
+*.conf
+tmp/*
+test.py
 sse_server.conf
 *.pyc
 *.sqlite
