@@ -10,6 +10,8 @@ from bottle import static_file
 from scripts.increase_animal import increase_animal
 from scripts.list_results import list_result
 
+from http import cookies
+
 # from app.C3 import *
 
 #Очень сомнительный кусок кода bottle.Bottle().config.load_config разбирает только часть конфига
@@ -61,7 +63,7 @@ urlSF = 'https://sf-pyw.mosyag.in'
 def index():
     print('/')
     pass
-
+#-----------------------------------C1-------------------------------------
 #приветственная страница по модулю C1
 @app.route('/C1')
 @view('C1.tpl')
@@ -69,21 +71,13 @@ def indexC1():
     print('/C1')
     pass
 
-
+#-----------------------------------C2-------------------------------------
 #приветственная страница по модулю C2
 #выбор голосовалки (этот сервер или сервер sf)
 @app.route('/C2')
 @view('C2.tpl')
 def indexC2():
     print('/C2')
-    pass
-
-#приветственная страница по модулю C3
-#выбор программы "Ваш город" или "Галочки предпочтений"
-@app.route('/C3')
-@view('C3.tpl')
-def indexC3():
-    print('/C3')
     pass
 
 #страница с голосованием на этом сервере
@@ -172,6 +166,43 @@ def word_spammer():
 @app.route('/randoms')
 @view('randoms.tpl')
 def mosyagin_randoms():
+    pass
+
+
+#-----------------------------------C3-------------------------------------
+#приветственная страница по модулю C3
+#выбор программы "Ваш город" или "Галочки предпочтений"
+@app.route('/C3')
+@view('C3.tpl')
+def indexC3():
+    print('/C3')
+    pass
+
+# Такой способ не проходит
+# не получается декодировать кирилицу из bottle.request.get_cookie('my_city')
+# @app.route('/your_city')
+# @view('your_city.tpl')
+# def your_city():
+#     print('/your_city')
+#     city = bottle.request.get_cookie('my_city')
+#     print(city)
+#     if city:
+#         return {'city': city, 'is_known': '', 'is_unknown': 'd-none'}
+#     else:
+#         return {'city': '', 'is_known': 'd-none', 'is_unknown': ''}
+
+
+@app.route('/your_city')
+@view('your_city.tpl')
+def your_city():
+    print('/your_city')
+    pass
+
+
+@app.route('/preferences')
+@view('preferences.tpl')
+def preferences():
+    print('/preferences')
     pass
 
 
