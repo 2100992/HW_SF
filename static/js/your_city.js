@@ -7,15 +7,14 @@ const yourCity = $('#your-city')
 
 function init() {
     // $('#yourCityID').addClass('active');
-    city = getCookie('my_city');
-    if (city != '') {
+    let city = getCookie('my_city');
+    if (city === null || city === undefined || city === '') {
+        isUnknown.removeClass('d-none');
+        isKnown.addClass('d-none');
+    } else {
         yourCity.text(city)
-        isKnown.removeClass('d-none')
-        isUnknown.addClass('d-none')
-    }
-    else {
-        isUnknown.removeClass('d-none')
-        isKnown.addClass('d-none')
+        isKnown.removeClass('d-none');
+        isUnknown.addClass('d-none');
     }
 
 
