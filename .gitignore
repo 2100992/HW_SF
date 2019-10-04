@@ -11,4 +11,4 @@ test.py
 sse_server.conf
 *.pyc
 *.sqlite
-
+vue/client/*
