@@ -12,3 +12,5 @@ sse_server.conf
 *.pyc
 *.sqlite
 vue/client/*
+vue/node_modules/*
+vue/package-lock.json

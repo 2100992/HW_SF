@@ -1,18 +1,18 @@
-# import time
 from time import time, sleep
 from configparser import ConfigParser
 
 import bottle
-from bottle import redirect
+#from bottle import redirect
 from bottle import view
 from bottle import static_file
 
 from scripts.increase_animal import increase_animal
 from scripts.list_results import list_result
 
-from http import cookies
+#from http import cookies
 
-# from app.C3 import *
+from app.C4 import *
+print(tasks_db)
 
 #Очень сомнительный кусок кода bottle.Bottle().config.load_config разбирает только часть конфига
 #SSEHost, SSEPort, database_path не читаются. Надо бы вынести чтение конфигов базы данных и SSE в отдельные функции
@@ -206,6 +206,39 @@ def preferences():
     pass
 
 
+#-----------------------------------C4-------------------------------------
+@app.route("/api/tasks/")
+def indexC4():
+    bottle.response.headers['Access-Control-Allow-Origin'] = '*'
+    tasks = [task.to_dict() for task in tasks_db.values()]
+    return {"tasks": tasks}
+
+
+@app.post("/api/add-task")
+def add_task():
+    desc = bottle.request.POST.description.strip()
+    if len(desc) > 0:
+        new_uid = max(tasks_db.keys()) + 1
+        t = TodoItem(desc, new_uid)
+        tasks_db[new_uid] = t
+    return "Ok"
+
+
+@app.route("/api/delete/<uid:int>")
+def api_delete(uid):
+    tasks_db.pop(uid)
+    return "Ok"
+
+
+@app.route("/api/complete/<uid:int>")
+def api_complete(uid):
+    tasks_db[uid].is_completed = True
+    return "Ok"
+
+
+
+
+#--------------------------------------------------------------------------
 if __name__ == "__main__":
     bottle.run(
         app=app,
