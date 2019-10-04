@@ -2,7 +2,7 @@
 .vscode/*
 package.json
 package-lock.json
-frontend4testing/node_modules/*
+frontend/node_modules/*
 *.sqlite
 *.pyc
 *.conf
