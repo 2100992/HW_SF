@@ -208,24 +208,41 @@ def preferences():
 
 
 #-----------------------------------C4-------------------------------------
+# @enable_cors
+# @app.route("/api/tasks/")
+# def indexC4():
+#     # bottle.response.headers['Access-Control-Allow-Origin'] = '*'
+#     tasks = [task.to_dict() for task in tasks_db.values()]
+#     return {"tasks": tasks}
+
+# @enable_cors
+# @app.post("/api/add-task")
+# def add_task():
+#     desc = bottle.request.json['description']
+#     is_completed = bottle.request.json['is_completed']
+#     if len(desc) > 0:
+#         new_uid = max(tasks_db.keys()) + 1
+#         t = TodoItem(desc, new_uid)
+#         t.is_completed = is_completed
+#         tasks_db[new_uid] = t
+#     return "Ok"
+
+
 @enable_cors
-@app.route("/api/tasks/")
-def indexC4():
-    # bottle.response.headers['Access-Control-Allow-Origin'] = '*'
-    tasks = [task.to_dict() for task in tasks_db.values()]
-    return {"tasks": tasks}
-
-
-@app.post("/api/add-task")
+@app.route("/api/tasks/", method=["GET", "POST"])
 def add_task():
-    desc = bottle.request.json['description']
-    is_completed = bottle.request.json['is_completed']
-    if len(desc) > 0:
-        new_uid = max(tasks_db.keys()) + 1
-        t = TodoItem(desc, new_uid)
-        t.is_completed = is_completed
-        tasks_db[new_uid] = t
-    return "Ok"
+    if bottle.request.method == 'GET':
+        tasks = [task.to_dict() for task in tasks_db.values()]
+        return {"tasks": tasks}
+    elif bottle.request.method == "POST":
+        desc = bottle.request.json['description']
+        is_completed = bottle.request.json.get('is_completed', False)
+        if len(desc) > 0:
+            new_uid = max(tasks_db.keys()) + 1
+            t = TodoItem(desc, new_uid)
+            t.is_completed = is_completed
+            tasks_db[new_uid] = t
+        return "OK"
 
 
 @app.route("/api/delete/<uid:int>")
@@ -241,7 +258,7 @@ def api_complete(uid):
 
 
 
-app.install(CorsPlugin(origins=['http://localhost:8000']))
+app.install(CorsPlugin(origins=['http://localhost:8080']))
 #--------------------------------------------------------------------------
 if __name__ == "__main__":
     bottle.run(
