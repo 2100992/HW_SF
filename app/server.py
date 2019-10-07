@@ -218,10 +218,12 @@ def indexC4():
 
 @app.post("/api/add-task")
 def add_task():
-    desc = bottle.request.POST.description.strip()
+    desc = bottle.request.json['description']
+    is_completed = bottle.request.json['is_completed']
     if len(desc) > 0:
         new_uid = max(tasks_db.keys()) + 1
         t = TodoItem(desc, new_uid)
+        t.is_completed = is_completed
         tasks_db[new_uid] = t
     return "Ok"
 
