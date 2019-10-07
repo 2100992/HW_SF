@@ -5,6 +5,7 @@ import bottle
 #from bottle import redirect
 from bottle import view
 from bottle import static_file
+from truckpad.bottle.cors import CorsPlugin, enable_cors
 
 from scripts.increase_animal import increase_animal
 from scripts.list_results import list_result
@@ -207,9 +208,10 @@ def preferences():
 
 
 #-----------------------------------C4-------------------------------------
+@enable_cors
 @app.route("/api/tasks/")
 def indexC4():
-    bottle.response.headers['Access-Control-Allow-Origin'] = '*'
+    # bottle.response.headers['Access-Control-Allow-Origin'] = '*'
     tasks = [task.to_dict() for task in tasks_db.values()]
     return {"tasks": tasks}
 
@@ -237,7 +239,7 @@ def api_complete(uid):
 
 
 
-
+app.install(CorsPlugin(origins=['http://localhost:8000']))
 #--------------------------------------------------------------------------
 if __name__ == "__main__":
     bottle.run(
