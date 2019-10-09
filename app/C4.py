@@ -1,3 +1,5 @@
+import uuid
+
 class TodoItem:
     def __init__(self, description, unique_id):
         self.description = description
@@ -15,7 +17,7 @@ class TodoItem:
         }
 
 tasks_db = {
-    uid: TodoItem(desc, uid)
+    uid: TodoItem(desc, str(uuid.uuid4()))
     for uid, desc in enumerate(
         start=1,
         iterable=[
