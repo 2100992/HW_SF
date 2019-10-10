@@ -12,8 +12,7 @@ from scripts.list_results import list_result
 
 #from http import cookies
 
-from app.C4 import *
-print(tasks_db)
+import app.db_tasks as db_tasks
 
 #Очень сомнительный кусок кода bottle.Bottle().config.load_config разбирает только часть конфига
 #SSEHost, SSEPort, database_path не читаются. Надо бы вынести чтение конфигов базы данных и SSE в отдельные функции
@@ -232,17 +231,27 @@ def preferences():
 @app.route("/api/tasks/", method=["GET", "POST"])
 def add_task():
     if bottle.request.method == 'GET':
-        tasks = [task.to_dict() for task in tasks_db.values()]
+        tasks = []
+        for task in db_tasks.get_all_tasks():
+            tasks.append({
+                'id': task.id,
+                'uid': task.uid,
+                'desc': task.desc,
+                'user': task.user,
+                'is_completed': task.is_completed,
+                'is_deleted': task.is_deleted
+            })
         return {"tasks": tasks}
     elif bottle.request.method == "POST":
-        desc = bottle.request.json['description']
-        is_completed = bottle.request.json.get('is_completed', False)
-        if len(desc) > 0:
-            new_uid = max(tasks_db.keys()) + 1
-            t = TodoItem(desc, new_uid)
-            t.is_completed = is_completed
-            tasks_db[new_uid] = t
-        return "OK"
+        print(bottle.request.json)
+        # desc = bottle.request.json['description']
+        # is_completed = bottle.request.json.get('is_completed', False)
+        # if len(desc) > 0:
+        #     new_uid = max(tasks_db.keys()) + 1
+        #     t = TodoItem(desc, new_uid)
+        #     t.is_completed = is_completed
+        #     tasks_db[new_uid] = t
+        # return "OK"
 
 
 @app.route("/api/delete/<uid:int>")
