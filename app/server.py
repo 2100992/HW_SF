@@ -244,14 +244,10 @@ def add_task(userName):
         return {"tasks": tasks}
     elif bottle.request.method == "POST":
         print(bottle.request.json)
-        # desc = bottle.request.json['description']
-        # is_completed = bottle.request.json.get('is_completed', False)
-        # if len(desc) > 0:
-        #     new_uid = max(tasks_db.keys()) + 1
-        #     t = TodoItem(desc, new_uid)
-        #     t.is_completed = is_completed
-        #     tasks_db[new_uid] = t
-        # return "OK"
+        db_tasks.add_task(userName, bottle.request.json['description'])
+        return "OK"
+    elif bottle.request.method == "PUT":
+        db_tasks.change_task(bottle.request.json['uid'], **bottle.request.json)
 
 
 @app.route("/api/delete/<uid:int>")
