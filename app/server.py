@@ -228,11 +228,11 @@ def preferences():
 
 
 @enable_cors
-@app.route("/api/tasks/", method=["GET", "POST"])
-def add_task():
+@app.route("/api/tasks/<userName>", method=["GET", "POST"])
+def add_task(userName):
     if bottle.request.method == 'GET':
         tasks = []
-        for task in db_tasks.get_all_tasks():
+        for task in db_tasks.find_tasks(userName):
             tasks.append({
                 'id': task.id,
                 'uid': task.uid,
