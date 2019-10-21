@@ -63,16 +63,18 @@ def add_task(user, desc, uid = '', is_completed = False, is_deleted = False):
     session.commit()
     pass
 
-def change_task(uid, *args, **kwargs):
+# def change_task(uid, *args, **kwargs):
+def change_task(**kwargs):
     """
     Изменяем задачу по uid
     """
     session = connect_db(DB_PATH)
+    uid = kwargs['uid']
     task = session.query(Tasks).\
         filter(Tasks.uid == uid).first()
     
     for key, value in kwargs.items():
-        if key == 'desc':
+        if key == 'description':
             task.desc = value
         if key == 'is_completed':
             task.is_completed = value
@@ -84,3 +86,9 @@ def change_task(uid, *args, **kwargs):
     session.add(task)
     session.commit()
     pass
+
+def get_task(uid):
+    session = connect_db(DB_PATH)
+    task = session.query(Tasks).\
+        filter(Tasks.uid == uid).first()
+    return task

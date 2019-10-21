@@ -228,7 +228,7 @@ def preferences():
 
 
 @enable_cors
-@app.route("/api/tasks/<userName>", method=["GET", "POST"])
+@app.route("/api/tasks/<userName>", method=["GET", "POST", "PUT"])
 def add_task(userName):
     if bottle.request.method == 'GET':
         tasks = []
@@ -243,12 +243,20 @@ def add_task(userName):
             })
         return {"tasks": tasks}
     elif bottle.request.method == "POST":
-        print(bottle.request.json)
         db_tasks.add_task(userName, bottle.request.json['description'])
+        print(bottle.request.json)
         return "OK"
     elif bottle.request.method == "PUT":
-        db_tasks.change_task(bottle.request.json['uid'], **bottle.request.json)
-
+        print(bottle.request.json)
+        uid = bottle.request.json['uid']
+        #db_tasks.change_task(uid, **bottle.request.json)
+        db_tasks.change_task(**bottle.request.json)
+        #print(bottle.request.json)
+        return "OK"
+    # elif bottle.request.method == "OPTIONS":
+    #     db_tasks.change_task(bottle.request.json['uid'], **bottle.request.json)
+    #     print(bottle.request.json)
+    #     return "OK"
 
 @app.route("/api/delete/<uid:int>")
 def api_delete(uid):
