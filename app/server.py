@@ -2,7 +2,7 @@ from time import time, sleep
 from configparser import ConfigParser
 
 import bottle
-#from bottle import redirect
+from bottle import redirect
 from bottle import view
 from bottle import static_file
 from truckpad.bottle.cors import CorsPlugin, enable_cors
@@ -229,8 +229,7 @@ def preferences():
 @app.route('/C4')
 @view('C4.html')
 def indexC4():
-    print('/C4')
-    pass
+    redirect('http://94.103.94.54:5000')
 
 @enable_cors
 @app.route("/api/tasks/<userName>", method=["GET", "POST", "PUT"])
