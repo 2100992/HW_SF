@@ -226,6 +226,11 @@ def preferences():
 #         tasks_db[new_uid] = t
 #     return "Ok"
 
+@app.route('/C4')
+@view('C4.html')
+def indexC4():
+    print('/C4')
+    pass
 
 @enable_cors
 @app.route("/api/tasks/<userName>", method=["GET", "POST", "PUT"])
@@ -271,7 +276,7 @@ def api_complete(uid):
 
 
 
-app.install(CorsPlugin(origins=['http://localhost:8080']))
+app.install(CorsPlugin(origins=['http://94.103.94.54:8080']))
 #--------------------------------------------------------------------------
 if __name__ == "__main__":
     bottle.run(
