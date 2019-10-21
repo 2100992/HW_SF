@@ -31,7 +31,7 @@ def find_tasks(user):
     Находит все задачи принадлежащие пользователю
     """
     session = connect_db(DB_PATH)
-    tasks = session.query(Tasks).filter(Tasks.user == user).all()
+    tasks = session.query(Tasks).filter(Tasks.user == user, Tasks.is_deleted == False).all()
     return tasks
 
 def get_all_tasks():
